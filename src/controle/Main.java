@@ -6,18 +6,22 @@ public class Main {
 	public static Scanner sc = new Scanner(System.in);
 	public static Controle controle = new Controle();
 	
-	
+	public static void Menu() {
+		System.out.println("(C)adastrar Aluno");
+		System.out.println("(E)xibir Aluno");
+		System.out.println("(N)ovo Grupo");
+		System.out.println("(A)locar Aluno no Grupo e Imprimir Grupos");
+		System.out.println("(R)egistrar Aluno que Respondeu");
+		System.out.println("(I)mprimir Alunos que Responderam");
+		System.out.println("(O)ra, vamos fechar o programa!");
+
+		System.out.print(ln+ "Opção> ");
+	}		
+			
 	public static void main(String[] args) {
 		do {
-			System.out.println("(C)adastrar Aluno");
-			System.out.println("(E)xibir Aluno");
-			System.out.println("(N)ovo Grupo");
-			System.out.println("(A)locar Aluno no Grupo e Imprimir Grupos");
-			System.out.println("(R)egistrar Aluno que Respondeu");
-			System.out.println("(I)mprimir Alunos que Responderam");
-			System.out.println("(O)ra, vamos fechar o programa!");
-
-			System.out.print(ln+ "Opção> ");
+			Menu();
+			
 			String entrada = sc.nextLine();
 			
 			if(entrada.equals("C")) {
@@ -50,6 +54,22 @@ public class Main {
 				controle.grupo(novogrupo.toLowerCase());
 				
 			}else if(entrada.equals("A")) {
+				
+				System.out.println("(A)locar Aluno ou (I)mprimir Grupo? ");
+				// String entrada = sc.nextLine();
+				
+				if (entrada.equals("A")) {
+					System.out.println("Matricula: ");
+					String matricula = sc.nextLine();
+					sc.nextLine();
+					
+					System.out.println("Grupo: ");
+					String grupo = sc.nextLine();
+				}else if (entrada.equals("I")) {
+					
+				}else {
+					System.out.println("OPÇÃO INVÁLIDA!");
+				}
 				
 			}else if(entrada.equals("R")) {
 				

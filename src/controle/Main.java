@@ -50,7 +50,7 @@ public class Main {
 				controle.grupo(novogrupo.toLowerCase());
 				
 			}else if(entrada.equals("A")) {
-				System.out.println("true");
+				
 			}else if(entrada.equals("R")) {
 				
 			}else if(entrada.equals("I")) {

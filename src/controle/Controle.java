@@ -1,10 +1,13 @@
 package controle;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Controle {
+	
 	private HashMap<Integer, Aluno> alunosCadastrados = new HashMap<>();
 	private HashMap<String, Grupo> gruposCadastrados = new HashMap<>();
+	private ArrayList<Aluno> alunos = new ArrayList<Aluno>();
 	
 	public void cadastra(int matricula, String nome, String curso) {
 		
@@ -35,5 +38,37 @@ public class Controle {
 			System.out.println("CADASTRO REALIZADO!");
 		}
 	
+	}
+	public void alocarAluno(int matricula, String nomeGrupo) {
+		Aluno aluno = alunosCadastrados.get(matricula);
+		Grupo grupo = gruposCadastrados.get(nomeGrupo);
+		if (aluno == null){
+			System.out.println("Aluno não cadastrado.");
+		
+		}else if (grupo == null){
+			System.out.println("Grupo não cadastrado.");
+		
+		}else {
+			grupo.addAluno(aluno);	
+			System.out.println("ALUNO ALOCADO!");
+		}
+	}
+	public String retornaGrupo(String nomeGrupo) {
+		Grupo grupo = gruposCadastrados.get(nomeGrupo);
+		return grupo.toString();
+	}
+	public void alunosRespodem(int matricula) {
+		Aluno aluno = alunosCadastrados.get(matricula);
+		this.alunos.add(aluno);
+		System.out.println("ALUNO REGISTRADO!");
+	}
+	public String RetornoAlunosRespodem() {
+		String retorno = "";
+		int cont = 0;
+		for (Aluno aluno: alunos){
+			cont +=1;
+			retorno += aluno.getMatricula() + " - " + aluno.getNome() + " - " + aluno.getCurso() +Main.ln;
+		}
+	return cont + retorno;
 	}
 }

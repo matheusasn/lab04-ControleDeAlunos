@@ -30,7 +30,7 @@ public class Main {
 			} else if (entrada.equals("E")) {
 				exibirAluno();
 			} else if (entrada.equals("N")) {
-				novoGrupo();
+				criaGrupo();
 			} else if (entrada.equals("A")) {
 				alocaAlunoEGrupo();
 			} else if (entrada.equals("R")) {
@@ -60,11 +60,11 @@ public class Main {
 			String curso = sc.nextLine();
 
 			controle.cadastra(matricula, nome, curso);
-
+			
 		} catch (InputMismatchException e) {
-			System.out.println("Valor diferente de um inteiro.");
+			System.out.println("Matricula Ivalida!" + ln);
 		} catch (IllegalArgumentException i) {
-			System.out.println("Argumento invalido.");
+			System.out.println("Argumento invalido." + ln);
 		}
 	}
 
@@ -76,53 +76,67 @@ public class Main {
 
 			controle.consultarAluno(matricula);
 		} catch (InputMismatchException e) {
-			System.out.println("Valor diferente de um inteiro.");
+			System.out.println("Matricula Ivalida!" + ln);
 		}
 
 	}
 
-	private static void novoGrupo() {
+	private static void criaGrupo() {
 		System.out.print("Grupo: ");
-		String novogrupo = sc.nextLine();
-
-		controle.grupo(novogrupo.toLowerCase());
+		String novoGrupo = sc.nextLine();
+		if (novoGrupo == null || novoGrupo == "") {
+			System.out.println("Entrada Invalida!" + ln);
+		} else {
+			controle.grupo(novoGrupo.toLowerCase());
+		}
 
 	}
 
 	private static void alocaAlunoEGrupo() {
+		try {
+			System.out.println("(A)locar Aluno ou (I)mprimir Grupo? ");
+			String opcao = sc.nextLine();
 
-		System.out.println("(A)locar Aluno ou (I)mprimir Grupo? ");
-		String opcao = sc.nextLine();
+			if (opcao.equals("A")) {
+				System.out.println("Matricula: ");
+				int matricula = sc.nextInt();
+				sc.nextLine();
 
-		if (opcao.equals("A")) {
-			System.out.println("Matricula: ");
-			int matricula = sc.nextInt();
-			sc.nextLine();
+				System.out.println("Grupo: ");
+				String grupo = sc.nextLine();
 
-			System.out.println("Grupo: ");
-			String grupo = sc.nextLine();
+				controle.alocarAluno(matricula, grupo);
 
-			controle.alocarAluno(matricula, grupo);
+			} else if (opcao.equals("I")) {
+				System.out.println("Grupo: ");
+				String nomeGrupo = sc.nextLine();
 
-		} else if (opcao.equals("I")) {
-			System.out.println("Grupo: ");
-			String nomeGrupo = sc.nextLine();
+				System.out.println(controle.retornaGrupo(nomeGrupo));
+			} else {
+				System.out.println("OPÇÃO INVÁLIDA!" + ln);
+			}
+		} catch (InputMismatchException e) {
+			System.out.println("Matricula Ivalida!" + ln);
+		} catch (NullPointerException i) {
+			System.out.println("Entrada Invalida!" + ln);
 
-			controle.retornaGrupo(nomeGrupo);
-		} else {
-			System.out.println("OPÇÃO INVÁLIDA!");
 		}
-
 	}
+
 	private static void alunosQueRespondem() {
-		System.out.println("Matricula: ");
-		int matriculaAluno = sc.nextInt();
-		sc.nextLine();
-		controle.alunosRespodem(matriculaAluno);
-
+		try {
+			System.out.println("Matricula: ");
+			int matriculaAluno = sc.nextInt();
+			sc.nextLine();
+			controle.alunosRespodem(matriculaAluno);
+		} catch (InputMismatchException e) {
+			System.out.println("Matricula Ivalida!" + ln);
+		}
 	}
+
 	private static void exibirAlunosQueRespondem() {
 		System.out.println("Alunos: " + ln);
 		System.out.println(controle.retornoAlunosRespodem());
 	}
+
 }

@@ -80,7 +80,7 @@ public class Main {
 				} else if (opcao.equals("I")) {
 					System.out.println("Grupo: ");
 					String nomeGrupo = sc.nextLine();
-					sc.nextLine();
+					
 					controle.retornaGrupo(nomeGrupo);
 				} else {
 					System.out.println("OPÇÃO INVÁLIDA!");
@@ -94,7 +94,7 @@ public class Main {
 				
 			} else if (entrada.equals("I")) {
 				System.out.println("Alunos: "+ln);
-				controle.RetornoAlunosRespodem();
+				System.out.println(controle.retornoAlunosRespodem()); 
 
 			} else if (entrada.equals("O")) {
 				break;

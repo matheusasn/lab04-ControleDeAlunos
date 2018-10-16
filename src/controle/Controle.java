@@ -62,13 +62,13 @@ public class Controle {
 		this.alunos.add(aluno);
 		System.out.println("ALUNO REGISTRADO!");
 	}
-	public String RetornoAlunosRespodem() {
+	public String retornoAlunosRespodem() {
 		String retorno = "";
 		int cont = 0;
 		for (Aluno aluno: alunos){
 			cont +=1;
-			retorno += aluno.getMatricula() + " - " + aluno.getNome() + " - " + aluno.getCurso() +Main.ln;
+			retorno += cont + ". " +aluno.getMatricula() + " - " + aluno.getNome() + " - " + aluno.getCurso() +Main.ln;
 		}
-	return cont + retorno;
+	return retorno;
 	}
 }

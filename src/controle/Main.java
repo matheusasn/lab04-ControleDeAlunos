@@ -19,90 +19,110 @@ public class Main {
 
 		System.out.print(ln + "Opção> ");
 	}
-	
+
 	public static void main(String[] args) {
 		do {
 			Menu();
-
 			String entrada = sc.nextLine();
 
 			if (entrada.equals("C")) {
-				try {
-					System.out.print("Matrícula: ");
-
-					int matricula = sc.nextInt();
-					sc.nextLine();
-
-					System.out.print("Nome: ");
-					String nome = sc.nextLine();
-
-					System.out.print("Curso: ");
-					String curso = sc.nextLine();
-
-					controle.cadastra(matricula, nome, curso);
-
-				} catch (InputMismatchException e) {
-					System.out.println("Valor diferente de um inteiro.");
-				} catch (IllegalArgumentException i) {
-					System.out.println("Argumento invalido.");
-				}
-
+				cadastrarAluno();
 			} else if (entrada.equals("E")) {
-				
-				System.out.print("Matrícula: ");
-				int matricula = sc.nextInt();
-				sc.nextLine();
-
-				controle.consultarAluno(matricula);
-
+				exibirAluno();
 			} else if (entrada.equals("N")) {
-
-				System.out.print("Grupo: ");
-				String novogrupo = sc.nextLine();
-
-				controle.grupo(novogrupo.toLowerCase());
-
+				novoGrupo();
 			} else if (entrada.equals("A")) {
-
-				System.out.println("(A)locar Aluno ou (I)mprimir Grupo? ");
-				String opcao = sc.nextLine();
-
-				if (opcao.equals("A")) {
-					System.out.println("Matricula: ");
-					int matricula = sc.nextInt();
-					sc.nextLine();
-
-					System.out.println("Grupo: ");
-					String grupo = sc.nextLine();
-
-					controle.alocarAluno(matricula, grupo);
-
-				} else if (opcao.equals("I")) {
-					System.out.println("Grupo: ");
-					String nomeGrupo = sc.nextLine();
-					
-					controle.retornaGrupo(nomeGrupo);
-				} else {
-					System.out.println("OPÇÃO INVÁLIDA!");
-				}
-
+				alocaAlunoEGrupo();
 			} else if (entrada.equals("R")) {
-				System.out.println("Matricula: ");
-				int matriculaAluno = sc.nextInt();
-				sc.nextLine();
-				controle.alunosRespodem(matriculaAluno);
-				
+				alunosQueRespondem();
 			} else if (entrada.equals("I")) {
-				System.out.println("Alunos: "+ln);
-				System.out.println(controle.retornoAlunosRespodem()); 
-
+				exibirAlunosQueRespondem();
 			} else if (entrada.equals("O")) {
 				break;
-
 			} else {
 				System.out.println("OPÇÃO INVÁLIDA!");
 			}
 
 		} while (true);
+	}
+
+	private static void cadastrarAluno() {
+		try {
+			System.out.print("Matrícula: ");
+
+			int matricula = sc.nextInt();
+			sc.nextLine();
+
+			System.out.print("Nome: ");
+			String nome = sc.nextLine();
+
+			System.out.print("Curso: ");
+			String curso = sc.nextLine();
+
+			controle.cadastra(matricula, nome, curso);
+
+		} catch (InputMismatchException e) {
+			System.out.println("Valor diferente de um inteiro.");
+		} catch (IllegalArgumentException i) {
+			System.out.println("Argumento invalido.");
+		}
+	}
+
+	private static void exibirAluno() {
+		try {
+			System.out.print("Matrícula: ");
+			int matricula = sc.nextInt();
+			sc.nextLine();
+
+			controle.consultarAluno(matricula);
+		} catch (InputMismatchException e) {
+			System.out.println("Valor diferente de um inteiro.");
+		}
+
+	}
+
+	private static void novoGrupo() {
+		System.out.print("Grupo: ");
+		String novogrupo = sc.nextLine();
+
+		controle.grupo(novogrupo.toLowerCase());
+
+	}
+
+	private static void alocaAlunoEGrupo() {
+
+		System.out.println("(A)locar Aluno ou (I)mprimir Grupo? ");
+		String opcao = sc.nextLine();
+
+		if (opcao.equals("A")) {
+			System.out.println("Matricula: ");
+			int matricula = sc.nextInt();
+			sc.nextLine();
+
+			System.out.println("Grupo: ");
+			String grupo = sc.nextLine();
+
+			controle.alocarAluno(matricula, grupo);
+
+		} else if (opcao.equals("I")) {
+			System.out.println("Grupo: ");
+			String nomeGrupo = sc.nextLine();
+
+			controle.retornaGrupo(nomeGrupo);
+		} else {
+			System.out.println("OPÇÃO INVÁLIDA!");
+		}
+
+	}
+	private static void alunosQueRespondem() {
+		System.out.println("Matricula: ");
+		int matriculaAluno = sc.nextInt();
+		sc.nextLine();
+		controle.alunosRespodem(matriculaAluno);
+
+	}
+	private static void exibirAlunosQueRespondem() {
+		System.out.println("Alunos: " + ln);
+		System.out.println(controle.retornoAlunosRespodem());
 	}
 }

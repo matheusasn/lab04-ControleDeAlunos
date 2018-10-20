@@ -59,13 +59,14 @@ public class Main {
 			System.out.print("Curso: ");
 			String curso = sc.nextLine();
 
-			controle.cadastra(matricula, nome, curso);
+			controle.cadastrar(matricula, nome, curso);
 			
 		} catch (InputMismatchException e) {
 			System.out.println("Matricula Ivalida!" + ln);
 		} catch (IllegalArgumentException i) {
 			System.out.println("Argumento invalido." + ln);
 		}
+		
 	}
 
 	private static void exibirAluno() {
